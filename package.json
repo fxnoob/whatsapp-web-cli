@@ -1,0 +1,24 @@
+{
+  "name": "whatsapp-web-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fxnoob/whatsapp-web-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fxnoob/whatsapp-web-cli/issues"
+  },
+  "homepage": "https://github.com/fxnoob/whatsapp-web-cli#readme",
+  "dependencies": {
+    "node-cron": "^2.0.3",
+    "puppeteer": "^2.0.0"
+  }
+}
