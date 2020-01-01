@@ -3,11 +3,11 @@ const message = "Radhey Radhey!!!";
 const whatsapp = new WhatsappWebAutomation();
 
 const Store = [
-  { group: "Renu Sis", message: message },
-  { group: "Hom3", message: message },
-  { group: "Daddy", message: message },
-  { group: "Dinesh Bhagwan Singh", message: message },
-  { group: "Pawan‪ Saini‪ Deeg", message: message }
+  { group: "john doe", message: message },
+  { group: "john doe", message: message },
+  { group: "john doe", message: message },
+  { group: "Gjohn doe", message: message },
+  { group: "john doe", message: message },
 ];
 const init = async () => {
   await whatsapp.init();

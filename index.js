@@ -1,46 +1,30 @@
-const puppeteer = require("puppeteer");
 const cron = require("node-cron");
+const { WhatsappWebAutomation } = require("./whatsapp");
+const message = "Radhey Radhey!!!";
+const whatsapp = new WhatsappWebAutomation();
 
-const init = async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    userDataDir: "/Users/hitesh/Library/Application Support/Google/Chrome"
+const Store = [
+  { group: "Renu Sis", message: message },
+  { group: "Hom3", message: message },
+  { group: "Daddy", message: message },
+  { group: "Dinesh Bhagwan Singh", message: message },
+  { group: "Ultimate Family", message: message }
+];
+const setCron = async () => {
+  await whatsapp.init();
+  // every day at 3 am
+  cron.schedule("0 3 * * *", async () => {
+    console.log("sending messages");
+    for (let i = 0; i < Store.length; i++) {
+      await whatsapp.send(Store[i].group, Store[i].message);
+    }
   });
-  const page = await browser.newPage();
-  await page.goto("https://web.whatsapp.com/");
-  await page.setViewport({ width: 1440, height: 703 });
-  setCron(page, "Radhey Radhey!!!");
-  // await browser.close()
+};
+const init = async () => {
+  await setCron();
 };
 
 //test
 init().catch(e => {
   console.log({ e });
 });
-const serachThreadAndEnter = async (page, threadName) => {
-  //click sidebar search for group
-  await page.waitForSelector("#side > div._2HS9r > div > label > input");
-  // type group name
-  await page.type("#side > div._2HS9r > div > label > input", threadName, {
-    delay: 1
-  });
-  // press Enter key
-  await page.keyboard.press(String.fromCharCode(13));
-};
-
-const sendMessage = async (page, message) => {
-  const el = await page.evaluateHandle(() => document.activeElement);
-  // type message
-  await el.type(message);
-  // press Enter key
-  await page.keyboard.press(String.fromCharCode(13));
-};
-
-const setCron = (page, message) => {
-  // every dat at 3 am
-  cron.schedule("0 3 * * *", async () => {
-    console.log("sending message");
-    await serachThreadAndEnter(page, "Ultimate Family");
-    await sendMessage(page, message);
-  });
-};

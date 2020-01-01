@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "ny": "node happy_nyear.js"
   },
   "repository": {
     "type": "git",

@@ -28,6 +28,9 @@ class WhatsappWebAutomation {
   async serachThreadAndEnter(threadName) {
     //click sidebar search for group
     await this.page.waitForSelector("#side > div._2HS9r > div > label > input");
+    await this.page.evaluate(() => {
+      document.querySelector('#side > div._2HS9r > div > label > input').value = ''
+    });
     // type group name
     await this.page.type(
       "#side > div._2HS9r > div > label > input",
@@ -36,6 +39,7 @@ class WhatsappWebAutomation {
         delay: 1
       }
     );
+      await  this.sleep(2000);
       // press Enter key
       await this.page.keyboard.press(String.fromCharCode(13));
   }
